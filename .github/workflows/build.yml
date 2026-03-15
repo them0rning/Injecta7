@@ -30,6 +30,8 @@ jobs:
           THEOS: ~/theos
         run: |
           cd $GITHUB_WORKSPACE/FinalBuild
+          chmod +x layout/DEBIAN/extrainst_
+          chmod +x layout/DEBIAN/postrm
           make package FINALPACKAGE=1
 
       - name: Upload .deb
