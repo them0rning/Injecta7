@@ -245,8 +245,8 @@ static UIButton *MakePill(NSString *title, UIColor *bg) {
 
     self.flipHBtn = MakePill(@"⇔  Horizontal", RGB(55,55,80));
     self.flipVBtn = MakePill(@"⇕  Vertical",   RGB(55,55,80));
-    [self.flipHBtn addTarget:self action:@selector(flipH) forControlEvents:UIControlEventTouchUpInside];
-    [self.flipVBtn addTarget:self action:@selector(flipV) forControlEvents:UIControlEventTouchUpInside];
+    [self.flipHBtn addTarget:self action:@selector(doFlipH) forControlEvents:UIControlEventTouchUpInside];
+    [self.flipVBtn addTarget:self action:@selector(doFlipV) forControlEvents:UIControlEventTouchUpInside];
     [transformCard addSubview:self.flipHBtn];
     [transformCard addSubview:self.flipVBtn];
 
@@ -395,14 +395,14 @@ static UIButton *MakePill(NSString *title, UIColor *bg) {
 - (void)rotateCCW { if (!self.baseImage) return; self.rotateDeg = fmod(self.rotateDeg - 90 + 360, 360); [self refreshPreview]; }
 - (void)rotateCW  { if (!self.baseImage) return; self.rotateDeg = fmod(self.rotateDeg + 90, 360);        [self refreshPreview]; }
 
-- (void)flipH {
+- (void)doFlipH {
     if (!self.baseImage) return;
     self.flipH = !self.flipH;
     self.flipHBtn.backgroundColor = self.flipH ? RGB(40,110,255) : RGB(55,55,80);
     [self refreshPreview];
 }
 
-- (void)flipV {
+- (void)doFlipV {
     if (!self.baseImage) return;
     self.flipV = !self.flipV;
     self.flipVBtn.backgroundColor = self.flipV ? RGB(40,110,255) : RGB(55,55,80);
